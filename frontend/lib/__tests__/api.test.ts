@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { fetchSearch, fetchRepo } from "@/lib/api";
+import { fetchSearch, fetchRepo, fetchRecommend } from "@/lib/api";
 
 function mockFetch(status: number, body: unknown) {
   return vi.fn().mockResolvedValue({
@@ -36,5 +36,24 @@ describe("fetchRepo", () => {
   it("returns null on 404", async () => {
     vi.stubGlobal("fetch", mockFetch(404, { detail: "nope" }));
     expect(await fetchRepo("no", "such")).toBeNull();
+  });
+});
+
+describe("fetchRecommend", () => {
+  it("POSTs the query and parses the body", async () => {
+    const body = { ok: true, mode: "fallback", query: "x", summary: "s", picks: [], repos: [], auth: false };
+    const f = mockFetch(200, body);
+    vi.stubGlobal("fetch", f);
+    const out = await fetchRecommend("sql client", 5);
+    expect(out.mode).toBe("fallback");
+    const [url, init] = f.mock.calls[0] as [string, RequestInit];
+    expect(url).toContain("/api/recommend");
+    expect(init.method).toBe("POST");
+    expect(JSON.parse(init.body as string)).toEqual({ query: "sql client", limit: 5 });
+  });
+
+  it("throws on non-ok", async () => {
+    vi.stubGlobal("fetch", mockFetch(502, { detail: "bad gateway" }));
+    await expect(fetchRecommend("x")).rejects.toThrow("bad gateway");
   });
 });

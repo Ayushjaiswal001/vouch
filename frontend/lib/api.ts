@@ -52,6 +52,23 @@ export interface SearchResponse {
   auth: boolean;
 }
 
+export interface Pick {
+  full_name: string;
+  recommendation: string;
+  pros: string[];
+  cons: string[];
+}
+
+export interface RecommendResponse {
+  ok: boolean;
+  mode: "ai" | "fallback";
+  query: string;
+  summary: string;
+  picks: Pick[];
+  repos: RepoResult[];
+  auth: boolean;
+}
+
 export const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE ?? "http://127.0.0.1:8000";
 
@@ -85,4 +102,21 @@ export async function fetchRepo(
     throw new Error(detail?.detail ?? `Repo fetch failed (${res.status})`);
   }
   return (await res.json()) as RepoResult;
+}
+
+export async function fetchRecommend(
+  query: string,
+  limit = 5,
+): Promise<RecommendResponse> {
+  const res = await fetch(`${API_BASE}/api/recommend`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query, limit }),
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    const detail = await res.json().catch(() => ({}));
+    throw new Error(detail?.detail ?? `Recommend failed (${res.status})`);
+  }
+  return (await res.json()) as RecommendResponse;
 }
