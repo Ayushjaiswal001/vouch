@@ -163,6 +163,27 @@ Weighted total reuses/extends the existing formula:
 
 ---
 
-## 8. Open questions
+## 8. Operating constraints (hard rules)
+
+These govern every later decision and override convenience.
+
+1. **$0 to build and run.** Every tool, library, API, and host must have a genuinely free tier sufficient for v1. If any step *would* require payment, it is **stopped and surfaced separately** — never assumed — with at least one free alternative presented alongside, and the user decides. No silent paid dependencies.
+2. **Model tiering for the work.** Research, architecture, planning, and non-trivial reasoning are done by the **higher model** (Opus). Mechanical/repetitive implementation (scaffolding, boilerplate, porting files, wiring) is delegated to **lower models** (Sonnet/Haiku subagents) to conserve tokens. The higher model reviews delegated output.
+3. **Private repository.** The GitHub repo is created **private** (`gh repo create --private`). If `gh` is not authenticated, this is flagged and the user makes it private manually. Code is not pushed to a public remote at any point.
+
+### Free-stack confirmation (v1)
+| Need | Free choice | Paid only if… (alternative) |
+|------|-------------|------------------------------|
+| Source host | GitHub private repo (free) | — |
+| Frontend host | Vercel Hobby (free) | high traffic → Cloudflare Pages (free) |
+| Backend host | Render / Fly.io free tier | sleeps on idle → keep-warm ping (free) |
+| Data APIs | GitHub REST + OSSF Scorecard (free) | rate limits → free PAT |
+| LLM | Groq / Gemini free tier | quota hit → deterministic fallback (no cost) |
+| DB | SQLite (free, file-based) | need hosted → Neon/Supabase free tier |
+| Analytics | Plausible self-host or Umami (free) | — |
+
+If any of these free tiers proves insufficient during the build, work pauses and the cost + free alternatives are surfaced before proceeding.
+
+## 9. Open questions
 
 None blocking. To revisit post-v1: monetization surface (alerts vs audits vs saved stacks), whether to add Postgres, auth provider choice.
