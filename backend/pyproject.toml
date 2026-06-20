@@ -1,0 +1,28 @@
+[project]
+name = "vouch-backend"
+version = "0.1.0"
+description = "VOUCH backend — FastAPI wrapper over the find_oss discovery pipeline."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.29",
+    "pydantic>=2.6",
+    "pydantic-settings>=2.2",
+    "requests>=2.32",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-mock>=3.12", "httpx>=0.27"]
+
+[project.scripts]
+vouch-api = "app.main:run"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+markers = ["integration: hits real APIs (set RUN_INTEGRATION=1)"]
