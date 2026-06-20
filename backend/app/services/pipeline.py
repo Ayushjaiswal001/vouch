@@ -115,3 +115,16 @@ def run(
         "dropped": dropped,
         "top": top,
     }
+
+
+def enrich_repo(
+    full_name: str, *, token: str | None = None, refresh: bool = False
+) -> dict[str, Any] | None:
+    """Fetch + enrich + score a single repo. Returns a scored item or None."""
+    repo = search.get_repo(full_name, token=token, refresh=refresh)
+    if repo is None:
+        return None
+    # GitHub repo objects from /repos already include topics when requested via
+    # the default media type on modern API versions; default to [] if absent.
+    repo.setdefault("topics", repo.get("topics", []))
+    return _enrich_one(repo, token=token, refresh=refresh)

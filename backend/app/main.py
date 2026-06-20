@@ -5,7 +5,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.api import health, search
+from app.api import health, repo, search
 from app.core.config import settings
 
 
@@ -19,6 +19,7 @@ def create_app() -> FastAPI:
     )
     app.include_router(health.router, prefix="/api")
     app.include_router(search.router, prefix="/api")
+    app.include_router(repo.router, prefix="/api")
     return app
 
 

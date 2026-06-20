@@ -150,3 +150,18 @@ def fetch_advisories(
 
 def get_token(override: str | None = None) -> str | None:
     return override or os.environ.get("GITHUB_TOKEN")
+
+
+def get_repo(
+    full_name: str, *, token: str | None = None, refresh: bool = False
+) -> dict[str, Any] | None:
+    """Fetch a single repo's metadata, or None if not found."""
+    if not refresh:
+        cached = cache.get("repo", full_name)
+        if cached is not None:
+            return cached
+    data = _request(f"{GH_API}/repos/{full_name}", token)
+    if data is None:
+        return None
+    cache.put("repo", full_name, data)
+    return data
