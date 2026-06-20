@@ -1,0 +1,9 @@
+services:
+  backend:
+    build: ./backend
+    working_dir: /app
+    command: python -m app.main
+    environment:
+      - VOUCH_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - "8000:8000"
