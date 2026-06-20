@@ -1,4 +1,4 @@
-import SearchClient from "@/app/search/SearchClient";
+import HomeTabs from "@/app/search/HomeTabs";
 
 export default function Home() {
   return (
@@ -9,11 +9,11 @@ export default function Home() {
         </h1>
         <p className="mx-auto mt-2 max-w-2xl text-gray-600">
           VOUCH ranks open-source projects by safety, maintenance, popularity, and
-          how lightweight they are — so you adopt the right one, not just the
-          most-starred one.
+          how lightweight they are — search directly, or ask the AI to recommend and
+          compare for your exact need.
         </p>
       </section>
-      <SearchClient />
+      <HomeTabs />
     </div>
   );
 }
