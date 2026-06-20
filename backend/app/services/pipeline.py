@@ -124,7 +124,6 @@ def enrich_repo(
     repo = search.get_repo(full_name, token=token, refresh=refresh)
     if repo is None:
         return None
-    # GitHub repo objects from /repos already include topics when requested via
-    # the default media type on modern API versions; default to [] if absent.
-    repo.setdefault("topics", repo.get("topics", []))
+    # /repos objects usually include topics on modern API versions; default to [].
+    repo.setdefault("topics", [])
     return _enrich_one(repo, token=token, refresh=refresh)

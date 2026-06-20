@@ -56,7 +56,11 @@ def _request(
             last_err = e
             time.sleep(2**attempt)
             continue
-        if r.status_code == 403 and "rate limit" in r.text.lower():
+        if r.status_code == 403 and (
+            "rate limit" in r.text.lower()
+            or "abuse" in r.text.lower()
+            or r.headers.get("X-RateLimit-Remaining") == "0"
+        ):
             raise RateLimitError(
                 "GitHub API rate limit hit. Set GITHUB_TOKEN (free PAT) "
                 "or wait an hour. See README for instructions."
@@ -160,7 +164,7 @@ def get_repo(
         cached = cache.get("repo", full_name)
         if cached is not None:
             return cached
-    data = _request(f"{GH_API}/repos/{full_name}", token)
+    data = _request(f"{GH_API}/repos/{quote(full_name, safe='/')}", token)
     if data is None:
         return None
     cache.put("repo", full_name, data)

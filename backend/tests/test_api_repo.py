@@ -46,3 +46,14 @@ def test_repo_not_found(mocker):
     client = TestClient(create_app())
     resp = client.get("/api/repo/no/such")
     assert resp.status_code == 404
+
+
+def test_repo_rejects_invalid_path_without_fetching(mocker):
+    # Malformed owner/name must be rejected at the edge, never reaching the
+    # pipeline (guards against path/host injection into the GitHub URL).
+    spy = mocker.patch("app.api.repo.pipeline.enrich_repo")
+    mocker.patch("app.api.repo.search.get_token", return_value=None)
+    client = TestClient(create_app())
+    resp = client.get("/api/repo/ab@cd/x")
+    assert resp.status_code == 404
+    spy.assert_not_called()
