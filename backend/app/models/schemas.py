@@ -57,3 +57,20 @@ class SearchResponse(BaseModel):
     dropped: list[DroppedRepo] = []
     top: list[RepoResult] = []
     auth: bool = False
+
+
+class Pick(BaseModel):
+    full_name: str
+    recommendation: str = ""
+    pros: list[str] = []
+    cons: list[str] = []
+
+
+class RecommendResponse(BaseModel):
+    ok: bool
+    mode: str  # "ai" | "fallback"
+    query: str
+    summary: str = ""
+    picks: list[Pick] = []
+    repos: list[RepoResult] = []
+    auth: bool = False
