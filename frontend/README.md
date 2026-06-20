@@ -13,6 +13,9 @@ The backend must be running (see ../backend/README.md).
 - `/`                      landing with two modes: live Search and Ask AI (recommend & compare)
 - `/repo/{owner}/{name}`   repo detail + trust scorecard + OSSF checks
 - `/compare?repos=a/b,c/d` side-by-side comparison
+- `/vs`                    index of curated open-source comparisons
+- `/vs/{slug}`             SEO comparison page (e.g. /vs/tauri-vs-electron), ISR-cached
+- `/sitemap.xml`, `/robots.txt`  generated from the comparisons registry
 
 ## Checks
     npm run test -- --run
