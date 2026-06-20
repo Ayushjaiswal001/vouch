@@ -10,7 +10,7 @@ Next.js (App Router) UI for the VOUCH discovery engine.
 The backend must be running (see ../backend/README.md).
 
 ## Routes
-- `/`                      landing + live search
+- `/`                      landing with two modes: live Search and Ask AI (recommend & compare)
 - `/repo/{owner}/{name}`   repo detail + trust scorecard + OSSF checks
 - `/compare?repos=a/b,c/d` side-by-side comparison
 
