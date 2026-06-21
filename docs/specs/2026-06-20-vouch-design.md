@@ -17,7 +17,7 @@
 
 **Why it's a business (not a side project):** OSS sprawl + supply-chain risk make "is this tool safe, maintained, and the right pick?" a recurring question. Free discovery + SEO comparison pages drive top-of-funnel; paid team features (continuous alerts, private audits, saved stacks) are the later monetization path. Out of scope for v1 but the narrative the architecture must not block.
 
-### Goals (v1 = pitch-ready product)
+### Goals (v1 = accelerator-ready product)
 - A polished, deployed web product that demos in under 60 seconds.
 - Three reinforcing pillars: **deep trust scorecards**, **AI compare & recommend**, **SEO comparison pages**.
 - Clean frontend/backend separation in different folders.
@@ -130,7 +130,7 @@ Weighted total reuses/extends the existing formula:
 - **P2 — Frontend core:** Next.js landing + search + results grid + repo detail with scorecards + interactive compare view; typed API client.
 - **P3 — AI layer:** `/recommend` + `/compare` endpoints with provider + fallback; AI panel in UI.
 - **P4 — SEO + growth:** `/vs/[slug]` pages, sitemap, robots, metadata, OG images.
-- **P5 — Polish + deploy:** pitch landing copy, analytics (privacy-friendly, free), deploy frontend (Vercel) + backend (Render/Fly free tier); smoke-test live.
+- **P5 — Polish + deploy:** deploy frontend (Vercel) + backend (Render/Fly free tier); analytics (privacy-friendly, free); smoke-test live; prep for India accelerator demo (velocity + wedge story — see `strategy/`).
 
 ---
 
