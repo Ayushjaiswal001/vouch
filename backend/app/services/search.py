@@ -153,7 +153,8 @@ def fetch_advisories(
 
 
 def get_token(override: str | None = None) -> str | None:
-    return override or os.environ.get("GITHUB_TOKEN")
+    from app.core.config import settings  # local import avoids circular import
+    return override or settings.github_token or os.environ.get("GITHUB_TOKEN")
 
 
 def get_repo(

@@ -1,5 +1,6 @@
 import pytest
 from app.ai import provider
+from app.services import search
 
 
 def test_not_configured_raises(monkeypatch):
@@ -35,3 +36,17 @@ def test_happy_path_returns_content(monkeypatch):
     monkeypatch.setattr(provider.requests, "post", lambda *a, **k: FakeResp())
     out = provider.complete("sys", "user")
     assert "summary" in out
+
+
+def test_get_token_prefers_settings_over_env(monkeypatch):
+    monkeypatch.setattr(search, "os", type("os", (), {"environ": {"GITHUB_TOKEN": "env-token"}})())
+    from app.core.config import settings
+    monkeypatch.setattr(settings, "github_token", "settings-token", raising=False)
+    assert search.get_token() == "settings-token"
+
+
+def test_get_token_falls_back_to_env(monkeypatch):
+    from app.core.config import settings
+    monkeypatch.setattr(settings, "github_token", None, raising=False)
+    monkeypatch.setenv("GITHUB_TOKEN", "env-token")
+    assert search.get_token() == "env-token"

@@ -1,3 +1,5 @@
+# NOTE: backend/Dockerfile is added in Plan 5 (deploy). Not yet runnable.
+# To run locally: cd backend && python -m app.main
 services:
   backend:
     build: ./backend
