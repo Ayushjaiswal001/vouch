@@ -1,7 +1,3 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "nodeVersion": "20.x"
+  "framework": "nextjs"
 }
