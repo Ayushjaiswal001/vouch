@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="frontend/public/logo.png" width="120" height="120" alt="VOUCH Logo" />
+</p>
+
 # VOUCH — Vetted Open-source Utilities & Comparison Hub
 
 > Product Hunt meets a trust scanner for open source: discover, compare, and
@@ -14,8 +18,9 @@ candidate on:
 - **Popularity** — stars (log-scaled).
 - **Lightweight** — native vs Electron, install size.
 
-Then it explains the score, runs an AI comparison on top, and serves SEO-optimised
-`/vs/tauri-vs-electron`-style pages with full structured data.
+It explains the score, runs an AI comparison on top, serves SEO-optimised
+`/vs/tauri-vs-electron`-style pages with full structured data, and greets users with a
+**premium animated opening transition** (using session state to prevent repeat fatigue).
 
 ## Architecture
 
