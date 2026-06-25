@@ -21,3 +21,14 @@ The backend must be running (see ../backend/README.md).
     npm run test -- --run
     npm run typecheck
     npm run build
+
+## Deploy (Vercel — free)
+
+1. Go to vercel.com → New Project → Import the private GitHub repo.
+2. **Root Directory:** `frontend` (required — Vercel auto-detects Next.js from here).
+3. **Environment Variables (Production + Preview):**
+   - `NEXT_PUBLIC_API_BASE` = the Render backend URL (e.g. `https://vouch-api.onrender.com`)
+   - `NEXT_PUBLIC_SITE_URL` = the Vercel project URL (e.g. `https://vouch.vercel.app`)
+4. Click **Deploy**.
+5. After the first deploy succeeds, add your Vercel URL to the Render service's
+   `VOUCH_CORS_ORIGINS` env var, then redeploy the backend.
