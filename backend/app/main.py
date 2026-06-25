@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -27,10 +29,17 @@ def create_app() -> FastAPI:
 app = create_app()
 
 
-def run() -> None:
+def _uvicorn_run(app_path: str, **kwargs: object) -> None:
+    """Thin seam so tests can monkeypatch without importing uvicorn."""
     import uvicorn
 
-    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=False)
+    uvicorn.run(app_path, **kwargs)  # type: ignore[arg-type]
+
+
+def run() -> None:
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "8000"))
+    _uvicorn_run("app.main:app", host=host, port=port, reload=False)
 
 
 if __name__ == "__main__":
