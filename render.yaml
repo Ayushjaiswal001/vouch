@@ -1,0 +1,24 @@
+# Render Blueprint — see https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: vouch-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -e .
+    startCommand: python -m app.main
+    healthCheckPath: /api/health
+    envVars:
+      # Set these in the Render dashboard after creating the service.
+      # They are listed here as sync:false so Render knows they exist
+      # but does NOT sync a value from this file (no secrets in git).
+      - key: VOUCH_CORS_ORIGINS
+        sync: false
+      - key: VOUCH_GITHUB_TOKEN
+        sync: false
+      - key: VOUCH_LLM_API_KEY
+        sync: false
+      - key: VOUCH_LLM_BASE_URL
+        sync: false
+      - key: VOUCH_LLM_MODEL
+        sync: false
