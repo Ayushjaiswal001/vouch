@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: "VOUCH — Vetted open-source tools",
   description:
     "Discover, compare, and trust-check open-source tools with transparent safety and health scores.",
+  verification: {
+    other: {
+      "msvalidate.01": "8A15066D82C989C9DD46E2BD0180A719",
+    },
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
