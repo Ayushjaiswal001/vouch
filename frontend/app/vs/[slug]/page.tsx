@@ -97,6 +97,17 @@ export default async function VsPage({
 
       <VsComparison a={a} b={b} />
 
+      <section className="max-w-3xl text-sm leading-relaxed text-gray-700">
+        <h2 className="mb-2 text-base font-semibold text-gray-900">
+          {c.title}: which should you choose?
+        </h2>
+        <p>{c.intro}</p>
+        <p className="mt-2 text-gray-500">
+          Scores above are computed live from {a.full_name} and {b.full_name} using
+          OSSF Scorecard, GitHub activity, popularity, and footprint signals.
+        </p>
+      </section>
+
       <section>
         <h2 className="mb-2 text-sm font-semibold text-gray-700">Related comparisons</h2>
         <ul className="flex flex-wrap gap-2">

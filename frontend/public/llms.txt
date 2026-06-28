@@ -1,0 +1,37 @@
+# VOUCH
+
+> Vetted Open-source Utilities & Comparison Hub — discover, compare, and trust-check open-source GitHub tools with transparent safety, maintenance, popularity, and lightweight scores, plus AI-powered recommendations.
+
+VOUCH scores open-source projects on safety (OSSF Scorecard + security advisories), maintenance (commit and release recency), popularity (stars), and footprint (native vs heavy runtimes). Data is fetched live from the GitHub REST API and the OSSF Scorecard. It is free to use and collects no personal data.
+
+## Main pages
+- [Home / Search](https://vouch-mauve-two.vercel.app): search any software category and get the top safe, maintained, lightweight open-source tools; ask the AI to recommend and compare.
+- [All comparisons](https://vouch-mauve-two.vercel.app/vs): index of curated side-by-side open-source comparisons.
+
+## Comparisons
+- [Tauri vs Electron](https://vouch-mauve-two.vercel.app/vs/tauri-vs-electron): desktop app frameworks
+- [Vite vs Webpack](https://vouch-mauve-two.vercel.app/vs/vite-vs-webpack): JavaScript build tools
+- [Bun vs Deno](https://vouch-mauve-two.vercel.app/vs/bun-vs-deno): JavaScript runtimes
+- [Svelte vs React](https://vouch-mauve-two.vercel.app/vs/svelte-vs-react): frontend frameworks
+- [FastAPI vs Flask](https://vouch-mauve-two.vercel.app/vs/fastapi-vs-flask): Python web frameworks
+- [pnpm vs npm](https://vouch-mauve-two.vercel.app/vs/pnpm-vs-npm): JavaScript package managers
+- [React vs Vue](https://vouch-mauve-two.vercel.app/vs/react-vs-vue): frontend frameworks
+- [Angular vs React](https://vouch-mauve-two.vercel.app/vs/angular-vs-react): frontend frameworks
+- [Next.js vs Remix](https://vouch-mauve-two.vercel.app/vs/nextjs-vs-remix): React frameworks
+- [Svelte vs Solid](https://vouch-mauve-two.vercel.app/vs/svelte-vs-solid): frontend frameworks
+- [PostgreSQL vs MySQL](https://vouch-mauve-two.vercel.app/vs/postgres-vs-mysql): relational databases
+- [Redis vs Memcached](https://vouch-mauve-two.vercel.app/vs/redis-vs-memcached): in-memory caches
+- [Docker vs Podman](https://vouch-mauve-two.vercel.app/vs/docker-vs-podman): containers
+- [Kubernetes vs Nomad](https://vouch-mauve-two.vercel.app/vs/kubernetes-vs-nomad): orchestrators
+- [Tailwind CSS vs Bootstrap](https://vouch-mauve-two.vercel.app/vs/tailwindcss-vs-bootstrap): CSS frameworks
+- [Express vs Fastify](https://vouch-mauve-two.vercel.app/vs/express-vs-fastify): Node.js web frameworks
+- [Django vs Flask](https://vouch-mauve-two.vercel.app/vs/django-vs-flask): Python web frameworks
+- [PyTorch vs TensorFlow](https://vouch-mauve-two.vercel.app/vs/pytorch-vs-tensorflow): machine learning frameworks
+- [Rust vs Go](https://vouch-mauve-two.vercel.app/vs/rust-vs-go): systems programming languages
+- [esbuild vs SWC](https://vouch-mauve-two.vercel.app/vs/esbuild-vs-swc): JavaScript build tools
+
+## API
+- `GET /api/search?q=<category>` — top safe/maintained/lightweight repos for a category
+- `GET /api/repo/{owner}/{name}` — trust scorecard for one repository
+- `POST /api/recommend` — natural-language recommendation and comparison
+- Backend base URL: https://vouch-api-gzw8.onrender.com
