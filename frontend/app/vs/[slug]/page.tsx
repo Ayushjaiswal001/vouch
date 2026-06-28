@@ -52,8 +52,8 @@ export default async function VsPage({
   const [aOwner, aName] = c.a.split("/");
   const [bOwner, bName] = c.b.split("/");
   const [a, b] = await Promise.all([
-    fetchRepo(aOwner, aName).catch(() => null),
-    fetchRepo(bOwner, bName).catch(() => null),
+    fetchRepo(aOwner, aName, { revalidate: 86400 }).catch(() => null),
+    fetchRepo(bOwner, bName, { revalidate: 86400 }).catch(() => null),
   ]);
   if (!a || !b) notFound();
 

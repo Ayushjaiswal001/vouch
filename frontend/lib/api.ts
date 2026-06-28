@@ -92,10 +92,16 @@ export async function fetchSearch(
 export async function fetchRepo(
   owner: string,
   name: string,
+  opts: { revalidate?: number } = {},
 ): Promise<RepoResult | null> {
-  const res = await fetch(`${API_BASE}/api/repo/${owner}/${name}`, {
-    cache: "no-store",
-  });
+  // When a revalidate window is given, use ISR-friendly caching so callers that
+  // declare `export const revalidate` (e.g. /vs/[slug]) stay statically
+  // generatable; otherwise fetch fresh (no-store) for live search/detail.
+  const init: RequestInit =
+    opts.revalidate !== undefined
+      ? { next: { revalidate: opts.revalidate } }
+      : { cache: "no-store" };
+  const res = await fetch(`${API_BASE}/api/repo/${owner}/${name}`, init);
   if (res.status === 404) return null;
   if (!res.ok) {
     const detail = await res.json().catch(() => ({}));
