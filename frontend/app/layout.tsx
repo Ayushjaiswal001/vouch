@@ -31,6 +31,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
+        <footer className="mx-auto max-w-5xl px-4 py-8 text-xs text-gray-500">
+          <p>
+            Data from{" "}
+            <a href="https://docs.github.com/rest" target="_blank" rel="noreferrer" className="underline hover:text-gray-700">
+              GitHub
+            </a>{" "}
+            &amp; the{" "}
+            <a href="https://securityscorecards.dev" target="_blank" rel="noreferrer" className="underline hover:text-gray-700">
+              OSSF Scorecard
+            </a>
+            . Scores are heuristic signals, provided as-is with no warranty — verify before adopting. VOUCH collects no personal data.
+          </p>
+          <p className="mt-1">© {new Date().getFullYear()} VOUCH · A free open-source discovery tool.</p>
+        </footer>
       </body>
     </html>
   );

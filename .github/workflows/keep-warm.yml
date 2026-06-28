@@ -1,0 +1,17 @@
+name: keep-warm
+
+# Pings the Render free-tier backend every ~10 min so it doesn't spin down
+# (which would give the first visitor a 30-60s cold start). Free: the repo is
+# public, so GitHub Actions minutes are unlimited.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping backend health
+        run: curl -sS -m 60 https://vouch-api-gzw8.onrender.com/api/health || true

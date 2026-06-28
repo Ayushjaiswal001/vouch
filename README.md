@@ -7,7 +7,7 @@
 > Product Hunt meets a trust scanner for open source: discover, compare, and
 > trust-check any open-source tool in seconds.
 
-**Live:** https://vouch-mauve-two.vercel.app (frontend; backend deploy pending)
+**Live:** **https://vouch-mauve-two.vercel.app** — fully deployed at $0 (frontend on Vercel, backend on Render).
 
 ## What it does
 
