@@ -6,6 +6,11 @@ import SplashScreen from "@/components/SplashScreen";
 import SupportButton from "@/components/SupportButton";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vouch-mauve-two.vercel.app";
+// Feedback link: set NEXT_PUBLIC_FEEDBACK_URL to a Tally form when ready;
+// falls back to email so it works immediately.
+const FEEDBACK =
+  process.env.NEXT_PUBLIC_FEEDBACK_URL ??
+  "mailto:ayushjaiswal1204@gmail.com?subject=VOUCH%20feedback";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -74,6 +79,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/support#refunds" className="underline hover:text-gray-700">
               Policies
             </Link>{" "}
+            ·{" "}
+            <a
+              href={FEEDBACK}
+              {...(FEEDBACK.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}
+              className="underline hover:text-gray-700"
+            >
+              Feedback
+            </a>{" "}
             · Data from{" "}
             <a href="https://docs.github.com/rest" target="_blank" rel="noreferrer" className="underline hover:text-gray-700">
               GitHub
