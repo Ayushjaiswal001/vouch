@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SplashScreen from "@/components/SplashScreen";
+import SupportButton from "@/components/SupportButton";
 
 export const metadata: Metadata = {
   title: "VOUCH — Vetted open-source tools",
@@ -36,9 +37,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
+        <SupportButton />
         <footer className="mx-auto max-w-5xl px-4 py-8 text-xs text-gray-500">
           <p>
-            Data from{" "}
+            <Link href="/support" className="underline hover:text-gray-700">
+              Support
+            </Link>{" "}
+            ·{" "}
+            <Link href="/support#refunds" className="underline hover:text-gray-700">
+              Policies
+            </Link>{" "}
+            · Data from{" "}
             <a href="https://docs.github.com/rest" target="_blank" rel="noreferrer" className="underline hover:text-gray-700">
               GitHub
             </a>{" "}
