@@ -5,10 +5,37 @@ import Image from "next/image";
 import SplashScreen from "@/components/SplashScreen";
 import SupportButton from "@/components/SupportButton";
 
+const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://vouch-mauve-two.vercel.app";
+
 export const metadata: Metadata = {
-  title: "VOUCH — Vetted open-source tools",
+  metadataBase: new URL(SITE),
+  title: "VOUCH — Find open-source tools you can trust",
   description:
-    "Discover, compare, and trust-check open-source tools with transparent safety and health scores.",
+    "Discover, compare, and trust-check open-source tools in seconds. VOUCH scores every project on safety, maintenance, popularity, and footprint, with AI-powered recommendations.",
+  applicationName: "VOUCH",
+  keywords: [
+    "open source",
+    "open-source tools",
+    "github",
+    "OSS comparison",
+    "dependency safety",
+    "OSSF Scorecard",
+    "developer tools",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "VOUCH",
+    url: SITE,
+    title: "VOUCH — Find open-source tools you can trust",
+    description:
+      "Discover, compare, and trust-check open-source tools with transparent safety, maintenance, popularity, and footprint scores — plus AI compare & recommend.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "VOUCH — Find open-source tools you can trust",
+    description:
+      "Transparent trust scores + AI recommendations for open-source tools.",
+  },
   verification: {
     other: {
       "msvalidate.01": "8A15066D82C989C9DD46E2BD0180A719",
